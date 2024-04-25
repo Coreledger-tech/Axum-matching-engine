@@ -1,0 +1,33 @@
+# Created at 2024-02-18T01:19:38.055
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream 'CodeCache: size=131072Kb used=14134Kb max_used=14134Kb free=116937Kb'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command 'CodeCache: size=131072Kb used=14134Kb max_used=14134Kb free=116937Kb'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:507)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:210)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:177)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.lang.Thread.run(Thread.java:750)
+
+
+# Created at 2024-02-18T01:19:38.056
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream ' bounds [0x0000000110000000, 0x0000000110de0000, 0x0000000118000000]'.
+
+# Created at 2024-02-18T01:19:38.057
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream ' total_blobs=5252 nmethods=4700 adapters=467'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command ' total_blobs=5252 nmethods=4700 adapters=467'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:507)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:210)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:177)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.lang.Thread.run(Thread.java:750)
+
+
+# Created at 2024-02-18T01:19:38.057
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream ' compilation: disabled (not enough contiguous free space left)'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command ' compilation: disabled (not enough contiguous free space left)'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:507)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:210)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:177)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.lang.Thread.run(Thread.java:750)
+
+

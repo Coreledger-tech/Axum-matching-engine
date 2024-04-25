@@ -1,0 +1,11 @@
+exchange.core2.core
+exchange.core2.core.common
+exchange.core2.core.common.api
+exchange.core2.core.common.api.binary
+exchange.core2.core.common.api.reports
+exchange.core2.core.common.cmd
+exchange.core2.core.common.config
+exchange.core2.core.orderbook
+exchange.core2.core.processors
+exchange.core2.core.processors.journaling
+exchange.core2.core.utils
