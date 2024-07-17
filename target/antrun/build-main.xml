@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="maven-antrun-" default="main"  >
 <target name="main">
-  <jar basedir="target/delombok" destfile="/Users/kelvinmusodza/Desktop/Coreledger/exchange-core/Exachange-core-test/exchange-core/target/exchange-core-0.5.4-SNAPSHOT-sources.jar"/>
+  <jar basedir="target/delombok" destfile="/Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/target/exchange-core-0.5.4-SNAPSHOT-sources.jar"/>
 </target>
 </project>

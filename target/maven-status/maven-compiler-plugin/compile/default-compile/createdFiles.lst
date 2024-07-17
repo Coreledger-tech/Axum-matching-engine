@@ -83,6 +83,7 @@ exchange/core2/core/common/api/binary/BinaryCommandType.class
 exchange/core2/core/common/api/reports/StateHashReportResult$SubmoduleType.class
 exchange/core2/core/common/cmd/OrderCommand$OrderCommandBuilder.class
 exchange/core2/core/common/api/ApiBinaryDataCommand$ApiBinaryDataCommandBuilder.class
+exchange/core2/core/Axum$1.class
 exchange/core2/core/processors/journaling/DiskSerializationProcessorConfiguration.class
 exchange/core2/core/common/api/ApiCancelOrder$ApiCancelOrderBuilder.class
 exchange/core2/core/common/api/reports/SingleUserReportResult$Position.class
@@ -116,6 +117,7 @@ exchange/core2/core/common/UserProfile.class
 exchange/core2/core/orderbook/IOrderBook$1.class
 exchange/core2/core/common/api/reports/SingleUserReportQuery.class
 exchange/core2/core/common/api/reports/ReportType.class
+exchange/core2/core/Axum.class
 exchange/core2/core/common/api/reports/StateHashReportResult$1.class
 exchange/core2/core/common/api/binary/BatchAddSymbolsCommand.class
 exchange/core2/core/processors/journaling/ISerializationProcessor.class
