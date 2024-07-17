@@ -1,0 +1,41 @@
+# syntax=docker/dockerfile:1
+
+# Stage 1: Dependency resolution
+FROM debian:buster-slim AS deps
+
+WORKDIR /build
+
+# Copy the Maven wrapper files
+COPY --chmod=0755 mvnw mvnw
+COPY mvnw.cmd mvnw.cmd
+COPY .mvn/ .mvn/
+
+# Copy the pom.xml file
+COPY pom.xml pom.xml
+
+# Download dependencies
+RUN apt-get update && apt-get install -y openjdk-8-jdk-headless maven
+RUN ./mvnw dependency:go-offline -DskipTests
+
+# Stage 2: Build the application
+FROM deps AS build
+
+WORKDIR /build
+
+COPY src src/
+RUN ./mvnw package -DskipTests && \
+    mv target/$(./mvnw help:evaluate -Dexpression=project.artifactId -q -DforceStdout)-$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout).jar target/app.jar
+
+# Stage 3: Run the application
+FROM openjdk:8-jre-slim AS final
+
+ARG UID=10001
+RUN adduser --disabled-password --gecos "" --home "/nonexistent" --shell "/sbin/nologin" --no-create-home --uid "${UID}" appuser
+USER appuser
+
+WORKDIR /app
+COPY --from=build /build/target/app.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
