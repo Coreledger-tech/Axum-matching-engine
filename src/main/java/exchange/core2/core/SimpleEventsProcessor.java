@@ -19,7 +19,7 @@ import java.util.function.ObjLongConsumer;
 
 @RequiredArgsConstructor
 @Getter
-@Slf4j
+//@Slf4j
 public class SimpleEventsProcessor implements ObjLongConsumer<OrderCommand> {
 
     private final IEventsHandler eventsHandler;
@@ -31,7 +31,8 @@ public class SimpleEventsProcessor implements ObjLongConsumer<OrderCommand> {
             sendTradeEvents(cmd);
             sendMarketData(cmd);
         } catch (Exception ex) {
-            log.error("Exception when handling command result data", ex);
+            //log.error("Exception when handling command result data", ex);
+            System.out.println("Exception when handling command result data");
         }
     }
 

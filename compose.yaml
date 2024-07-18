@@ -9,10 +9,14 @@
 # https://github.com/docker/awesome-compose
 services:
   server:
-    build:
-      context: .
+    build: .
+    image: axum-matching-engine-server
+    container_name: axum-matching-engine-server-1
     ports:
-      - 8080:8080
+      - "8080:8080"
+    environment:
+      - JAVA_OPTS=-Xms512m -Xmx1024m
+    command: ["java", "-jar", "/app/app.jar"]
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to

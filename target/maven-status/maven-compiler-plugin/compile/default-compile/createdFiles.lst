@@ -28,11 +28,9 @@ exchange/core2/core/utils/HashingUtils.class
 exchange/core2/core/IEventsHandler$RejectEvent.class
 exchange/core2/core/common/api/ApiOrderBookRequest$ApiOrderBookRequestBuilder.class
 exchange/core2/core/orderbook/OrderBookEventsHelper.class
-exchange/core2/core/ExchangeCoreAdapter.class
 exchange/core2/core/common/config/PerformanceConfiguration$PerformanceConfigurationBuilder.class
 exchange/core2/core/orderbook/OrderBookDirectImpl$DirectOrder$DirectOrderBuilder.class
 exchange/core2/core/common/api/ApiAdjustUserBalance.class
-exchange/core2/core/ExchangeCoreAdapter$1.class
 exchange/core2/core/SimpleEventsProcessor$1.class
 exchange/core2/core/SimpleEventsProcessor.class
 exchange/core2/core/common/SymbolType.class
