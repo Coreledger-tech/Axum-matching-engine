@@ -74,13 +74,13 @@
         <dependency>
             <groupId>com.lmax</groupId>
             <artifactId>disruptor</artifactId>
-            <version>3.4.3</version>  <!-- TODO 3.4.4 -->
+            <version>3.4.4</version> <!-- TODO 3.4.4 -->
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
+            <version>1.18.26</version>
             <scope>provided</scope>
         </dependency>
 
@@ -396,7 +396,7 @@
                     <plugin>
                         <groupId>org.projectlombok</groupId>
                         <artifactId>lombok-maven-plugin</artifactId>
-                        <version>1.18.12.0</version>
+                        <version>1.18.20.0</version>
                         <configuration>
                             <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
                             <outputDirectory>${delombok.output}</outputDirectory>
