@@ -52,11 +52,11 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>net.java.dev.jna</groupId>-->
-<!--            <artifactId>jna-platform</artifactId>-->
-<!--            <version>5.11.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna-platform</artifactId>
+            <version>5.11.0</version>
+        </dependency>
 
         <dependency>
             <groupId>net.java.dev.jna</groupId>
@@ -342,49 +342,49 @@
 <!--                    </plugin>-->
 
 
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-shade-plugin</artifactId>
-                        <version>3.4.0</version>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>shade</goal>
-                                </goals>
-                                <configuration>
-                                    <transformers>
-                                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                            <mainClass>exchange.core2.core.Axum</mainClass>
-                                        </transformer>
-                                        <transformer implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">
-                                            <resource>META-INF/*.SF</resource>
-                                            <resource>META-INF/*.DSA</resource>
-                                            <resource>META-INF/*.RSA</resource>
-                                        </transformer>
-                                    </transformers>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-
 <!--                    <plugin>-->
-<!--                        <artifactId>maven-assembly-plugin</artifactId>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-shade-plugin</artifactId>-->
+<!--                        <version>3.4.0</version>-->
 <!--                        <executions>-->
 <!--                            <execution>-->
 <!--                                <phase>package</phase>-->
 <!--                                <goals>-->
-<!--                                    <goal>single</goal>-->
+<!--                                    <goal>shade</goal>-->
 <!--                                </goals>-->
+<!--                                <configuration>-->
+<!--                                    <transformers>-->
+<!--                                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
+<!--                                            <mainClass>exchange.core2.core.Axum</mainClass>-->
+<!--                                        </transformer>-->
+<!--                                        <transformer implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">-->
+<!--                                            <resource>META-INF/*.SF</resource>-->
+<!--                                            <resource>META-INF/*.DSA</resource>-->
+<!--                                            <resource>META-INF/*.RSA</resource>-->
+<!--                                        </transformer>-->
+<!--                                    </transformers>-->
+<!--                                </configuration>-->
 <!--                            </execution>-->
 <!--                        </executions>-->
-<!--                        <configuration>-->
-<!--                            <descriptors>-->
-<!--                                <descriptor>src/main/assembly/assembly.xml</descriptor>-->
-<!--                            </descriptors>-->
-<!--                        </configuration>-->
 <!--                    </plugin>-->
+
+
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/assembly/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </plugin>
 
 
                     <plugin>
