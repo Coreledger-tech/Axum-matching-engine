@@ -1,0 +1,40 @@
+package exchange.core2.core;
+import exchange.core2.core.common.config.ExchangeConfiguration;
+
+public class Axum {
+    public static void main(String[] args) {
+        SimpleEventsProcessor eventsProcessor = new SimpleEventsProcessor(new IEventsHandler() {
+            @Override
+            public void tradeEvent(TradeEvent tradeEvent) {
+                System.out.println("Trade event: " + tradeEvent);
+            }
+
+            @Override
+            public void reduceEvent(ReduceEvent reduceEvent) {
+                System.out.println("Reduce event: " + reduceEvent);
+            }
+
+            @Override
+            public void rejectEvent(RejectEvent rejectEvent) {
+                System.out.println("Reject event: " + rejectEvent);
+            }
+
+            @Override
+            public void commandResult(ApiCommandResult commandResult) {
+                System.out.println("Command result: " + commandResult);
+            }
+
+            @Override
+            public void orderBook(OrderBook orderBook) {
+                System.out.println("OrderBook event: " + orderBook);
+            }
+        });
+
+        ExchangeConfiguration config = ExchangeConfiguration.defaultBuilder().build();
+        ExchangeCore exchangeCore = ExchangeCore.builder()
+                .resultsConsumer(eventsProcessor)
+                .exchangeConfiguration(config)
+                .build();
+        exchangeCore.startup();
+    }
+}
