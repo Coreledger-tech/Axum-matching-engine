@@ -76,6 +76,7 @@
 /Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/ExchangeApi.java
 /Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/processors/SimpleEventHandler.java
 /Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/processors/journaling/ISerializationProcessor.java
+/Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/FixApp.java
 /Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/utils/CoreArithmeticUtils.java
 /Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/common/api/ApiCancelOrder.java
 /Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/SimpleEventsProcessor.java
@@ -84,6 +85,7 @@
 /Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/orderbook/IOrderBook.java
 /Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/utils/SerializationUtils.java
 /Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/common/api/reports/ReportType.java
+/Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/FixEngine.java
 /Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/common/api/ApiAdjustUserBalance.java
 /Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/common/config/SerializationConfiguration.java
 /Users/kelvinmusodza/Desktop/Coreledger/Axum-matching-engine/src/main/java/exchange/core2/core/common/BalanceAdjustmentType.java

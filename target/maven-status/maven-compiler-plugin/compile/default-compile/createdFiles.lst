@@ -37,6 +37,7 @@ exchange/core2/core/common/SymbolType.class
 exchange/core2/core/IEventsHandler$OrderBookRecord.class
 exchange/core2/core/processors/SimpleEventHandler.class
 exchange/core2/core/common/config/OrdersProcessingConfiguration.class
+exchange/core2/core/FixEngine$1.class
 exchange/core2/core/processors/journaling/DummySerializationProcessor.class
 exchange/core2/core/common/IOrder.class
 exchange/core2/core/utils/ReflectionUtils.class
@@ -84,6 +85,7 @@ exchange/core2/core/common/api/ApiBinaryDataCommand$ApiBinaryDataCommandBuilder.
 exchange/core2/core/Axum$1.class
 exchange/core2/core/processors/journaling/DiskSerializationProcessorConfiguration.class
 exchange/core2/core/common/api/ApiCancelOrder$ApiCancelOrderBuilder.class
+exchange/core2/core/FixEngine.class
 exchange/core2/core/common/api/reports/SingleUserReportResult$Position.class
 exchange/core2/core/processors/SymbolSpecificationProvider.class
 exchange/core2/core/processors/WaitSpinningHelper.class
@@ -148,6 +150,7 @@ exchange/core2/core/common/api/ApiBinaryDataCommand.class
 exchange/core2/core/common/api/ApiResumeUser$ApiResumeUserBuilder.class
 exchange/core2/core/processors/TwoStepMasterProcessor.class
 exchange/core2/core/common/config/ExchangeConfiguration$ExchangeConfigurationBuilder.class
+exchange/core2/core/FixApp.class
 exchange/core2/core/processors/RiskEngine$LastPriceCacheRecord.class
 exchange/core2/core/IEventsHandler$ApiCommandResult.class
 exchange/core2/core/orderbook/OrderBookDirectImpl$DirectOrder.class

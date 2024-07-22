@@ -16,7 +16,38 @@ services:
       - "8080:8080"
     environment:
       - JAVA_OPTS=-Xms512m -Xmx1024m
-    command: ["java", "-jar", "/app/app.jar"]
+    command: ["java", "-cp", "app.jar:quickfixj-all-2.3.1.jar", "exchange.core2.core.FixEngine"]
+
+    #  quickfixj:
+    #    build: ./axum-matching-engine
+    #    image: quickfixj-container
+    #    container_name: quickfixj-server-1
+    #    ports:
+    #      - "5000:5000"
+    #    depends_on:
+    #      - server
+    #
+    #  # Example backend service (update as needed)
+    #  backend:
+    #    image: backend-service-image
+    #    build:
+    #      context: ./backend
+    #    container_name: backend-server-1
+    #    ports:
+    #      - "8081:8081"
+    #    depends_on:
+    #      - quickfixj
+    #
+    #  # Example web service (update as needed)
+    #  web:
+    #    image: web-interface-image
+    #    build:
+    #      context: ./web
+    #    container_name: web-server-1
+    #    ports:
+    #      - "8082:8082"
+    #    depends_on:
+    #      - backend
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to

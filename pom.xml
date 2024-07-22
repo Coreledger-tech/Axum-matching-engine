@@ -283,6 +283,14 @@
             <version>7.2.3</version>
             <scope>test</scope>
         </dependency>
+
+<!--        quickfix-->
+        <dependency>
+            <groupId>org.quickfixj</groupId>
+            <artifactId>quickfixj-all</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
     </dependencies>
 
     <profiles>

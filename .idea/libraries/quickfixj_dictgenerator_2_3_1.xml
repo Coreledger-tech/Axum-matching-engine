@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="quickfixj-dictgenerator-2.3.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/quickfixj/quickfixj-dictgenerator-2.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
