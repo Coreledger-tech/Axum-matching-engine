@@ -7,9 +7,11 @@
 # You can add other services your application may depend on here, such as a
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
+
 services:
   server:
-    build: .
+    build:
+      context: .
     image: axum-matching-engine-server
     container_name: axum-matching-engine-server-1
     ports:
@@ -17,37 +19,14 @@ services:
     environment:
       - JAVA_OPTS=-Xms512m -Xmx1024m
     command: ["java", "-cp", "app.jar:quickfixj-all-2.3.1.jar", "exchange.core2.core.FixEngine"]
+    networks:
+      - axum-network
 
-    #  quickfixj:
-    #    build: ./axum-matching-engine
-    #    image: quickfixj-container
-    #    container_name: quickfixj-server-1
-    #    ports:
-    #      - "5000:5000"
-    #    depends_on:
-    #      - server
-    #
-    #  # Example backend service (update as needed)
-    #  backend:
-    #    image: backend-service-image
-    #    build:
-    #      context: ./backend
-    #    container_name: backend-server-1
-    #    ports:
-    #      - "8081:8081"
-    #    depends_on:
-    #      - quickfixj
-    #
-    #  # Example web service (update as needed)
-    #  web:
-    #    image: web-interface-image
-    #    build:
-    #      context: ./web
-    #    container_name: web-server-1
-    #    ports:
-    #      - "8082:8082"
-    #    depends_on:
-    #      - backend
+  # Define the shared network
+networks:
+  axum-network:
+    driver: bridge
+
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
