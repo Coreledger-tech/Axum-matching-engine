@@ -6,7 +6,13 @@ public class FixClient {
     public static void main(String[] args) {
         try {
             // Load FIX session settings
-            SessionSettings settings = new SessionSettings("resources/quickfix.cfg");
+            InputStream inputStream = FixClient.class.getResourceAsStream("/quickfix.cfg");
+
+            if (inputStream == null) {
+                throw new NullPointerException("FIX configuration file 'quickfix.cfg' not found in the classpath");
+            }
+
+            SessionSettings settings = new SessionSettings(inputStream);
 
             // Create FIX application
             Application application = new ApplicationAdapter();
@@ -37,7 +43,7 @@ public class FixClient {
 
             // Stop the initiator
             initiator.stop();
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
