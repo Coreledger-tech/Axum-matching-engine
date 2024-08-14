@@ -33,27 +33,33 @@ public class FixEngineTest {
 
     private void runFixClientTest(FixMessageSender sender) throws Exception {
         // Load FIX session settings
-        SessionSettings settings = new SessionSettings("src/main/resources/quickfix.cfg");
-
+        InputStream inputStream = FixEngineTest.class.getResourceAsStream("/quickfix.cfg");
+    
+        if (inputStream == null) {
+            throw new NullPointerException("FIX configuration file 'quickfix.cfg' not found in the classpath");
+        }
+    
+        SessionSettings settings = new SessionSettings(inputStream);
+    
         // Create FIX application
         Application application = new ApplicationAdapter();
-
+    
         // Set up the message store, log, and message factories
         MessageStoreFactory storeFactory = new FileStoreFactory(settings);
         LogFactory logFactory = new FileLogFactory(settings);
         MessageFactory messageFactory = new DefaultMessageFactory();
-
+    
         // Initialize and start the SocketInitiator
         Initiator initiator = new SocketInitiator(application, storeFactory, settings, logFactory, messageFactory);
         initiator.start();
-
+    
         // Send the FIX message using the provided sender
         sender.send(initiator.getSessions().get(0));
-
+    
         // Stop the initiator
         initiator.stop();
     }
-
+    
     private void sendNewOrderBuy(SessionID sessionId) throws SessionNotFound {
         NewOrderSingle newOrderSingle = new NewOrderSingle(
                 new ClOrdID("12345"),
