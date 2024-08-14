@@ -551,6 +551,9 @@
                             <includes>
                                 <include>**/IT*.java</include>
                                 <include>**/*IntegrationTest.java</include>
+                                !-- Include FIX tests -->
+                                <include>**/FixEngineTest.java</include>
+                                <include>**/FixMessageTest.java</include>
                             </includes>
                             <excludes>
                                 <exclude>**/remote/**/*.class</exclude>
