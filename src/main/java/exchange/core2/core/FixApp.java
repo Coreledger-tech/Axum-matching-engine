@@ -52,17 +52,22 @@ public class FixApp implements Application {
     public void fromApp(Message message, SessionID sessionId) throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, UnsupportedMessageType {
         System.out.println("App message received: " + message);
 
-        if (message instanceof NewOrderSingle) {
-            NewOrderSingle order = (NewOrderSingle) message;
-            handleNewOrder(order);
-        } else if (message instanceof OrderCancelRequest) {
-            handleOrderCancel((OrderCancelRequest) message);
-        } else if (message instanceof OrderCancelReplaceRequest) {
-            handleOrderReplace((OrderCancelReplaceRequest) message);
-        } else if (message instanceof OrderStatusRequest) {
-            handleOrderStatusRequest((OrderStatusRequest) message);
-        } else if (message instanceof MarketDataRequest) {
-            handleMarketDataRequest((MarketDataRequest) message);
+       try {
+            if (message instanceof NewOrderSingle) {
+                NewOrderSingle order = (NewOrderSingle) message;
+                handleNewOrder(order);
+            } else if (message instanceof OrderCancelRequest) {
+                handleOrderCancel((OrderCancelRequest) message);
+            } else if (message instanceof OrderCancelReplaceRequest) {
+                handleOrderReplace((OrderCancelReplaceRequest) message);
+            } else if (message instanceof OrderStatusRequest) {
+                handleOrderStatusRequest((OrderStatusRequest) message);
+            } else if (message instanceof MarketDataRequest) {
+                handleMarketDataRequest((MarketDataRequest) message);
+            }
+        } catch (Exception e) {
+            System.err.println("Error processing FIX message: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -71,6 +76,8 @@ public class FixApp implements Application {
         char side = order.getSide().getValue();
         double price = order.getPrice().getValue();
         double quantity = order.getOrderQty().getValue();
+
+        System.out.println("Processing NewOrderSingle: symbol=" + symbol + ", side=" + side + ", price=" + price + ", quantity=" + quantity);
 
         // Translate FIX message to Axum command
         // Example:
@@ -88,17 +95,29 @@ public class FixApp implements Application {
                 .size((long) quantity)
                 .action(orderAction)
                 .orderType(orderType)
-                .build());
+                // .build());
+                .build()).thenAccept(result -> {
+                    if (result != CommandResultCode.SUCCESS) {
+                        System.err.println("Failed to place order: " + result);
+                    }
+                });                       
     }
 
     private void handleOrderCancel(OrderCancelRequest cancel) throws FieldNotFound {
         String origClOrdID = cancel.getOrigClOrdID().getValue();
         long orderId = Long.parseLong(origClOrdID);
 
+        System.out.println("Processing OrderCancelRequest: origClOrdID=" + origClOrdID);
+
         // Cancel order using Axum API
         exchangeApi.submitCommandAsync(ApiCancelOrder.builder()
                 .orderId(orderId)
-                .build());
+                // .build());
+                .build()).thenAccept(result -> {
+                    if (result != CommandResultCode.SUCCESS) {
+                        System.err.println("Failed to cancel order: " + result);
+                    }
+                });                       
     }
 
     private void handleOrderReplace(OrderCancelReplaceRequest replace) throws FieldNotFound {
@@ -108,6 +127,8 @@ public class FixApp implements Application {
         char side = replace.getSide().getValue();
         double price = replace.getPrice().getValue();
         double quantity = replace.getOrderQty().getValue();
+
+        System.out.println("Processing OrderCancelReplaceRequest: origClOrdID=" + origClOrdID + ", symbol=" + symbol + ", side=" + side + ", price=" + price + ", quantity=" + quantity);
 
         OrderAction orderAction = (side == Side.BUY) ? OrderAction.BID : OrderAction.ASK;
         OrderType orderType = OrderType.GTC; // Example order type
@@ -125,24 +146,89 @@ public class FixApp implements Application {
                         .size((long) quantity)
                         .action(orderAction)
                         .orderType(orderType)
-                        .build());
-            }
+                        // .build());
+                        .build()).thenAccept(result -> {
+                            if (result != CommandResultCode.SUCCESS) {
+                                System.err.println("Failed to replace order: " + result);
+                            }
+                        });
+            } else {
+                System.err.println("Failed to cancel order for replacement: " + cancelResult);
+            }                       
         });
     }
 
-    private void handleOrderStatusRequest(OrderStatusRequest request) throws FieldNotFound {
+     private void handleOrderStatusRequest(OrderStatusRequest request) throws FieldNotFound {
         String clOrdID = request.getClOrdID().getValue();
         long orderId = Long.parseLong(clOrdID);
 
-        // Example: Fetch and respond with order status using Axum API
-//        exchangeApi.getOrderStatus(orderId).thenAccept(status -> {
-            // Construct and send ExecutionReport message based on status
-       // });
+        System.out.println("Processing OrderStatusRequest: clOrdID=" + clOrdID);
+
+        exchangeApi.submitCommandAsyncFullResponse(ApiCancelOrder.builder()
+                .orderId(orderId)
+                .uid(301L) // Example UID
+                .symbol(1001) // Example symbol ID
+                .build()).thenAccept(cmd -> {
+                    // Construct an ExecutionReport based on the command result
+                    ExecutionReport executionReport = new ExecutionReport(
+                            new OrderID(Long.toString(cmd.orderId)),
+                            new ExecID(Long.toString(cmd.orderId)),
+                            new ExecType(ExecType.FILL),
+                            new OrdStatus(OrdStatus.FILLED),
+                            new Symbol("US9128285M80"),
+                            new Side(Side.BUY),
+                            new LeavesQty(cmd.size),
+                            new CumQty(cmd.size),
+                            new AvgPx(cmd.price)
+                    );
+                    executionReport.set(new ClOrdID(clOrdID));
+                    executionReport.set(new LastShares(cmd.size));
+                    executionReport.set(new LastPx(cmd.price));
+
+                    // Send the execution report back to the FIX client
+                    try {
+                        Session.sendToTarget(executionReport, sessionId);
+                    } catch (SessionNotFound sessionNotFound) {
+                        sessionNotFound.printStackTrace();
+                    }
+                });
     }
 
     private void handleMarketDataRequest(MarketDataRequest request) throws FieldNotFound {
-        // Example: Process market data request using Axum API
-        // Construct and send MarketDataSnapshotFullRefresh message
+        String symbol = request.getSymbol().getValue();
+        int depth = 10; // Example depth, could be adjusted based on the request
+
+        System.out.println("Processing MarketDataRequest: " + request.toString());
+
+        exchangeApi.requestOrderBookAsync(1001, depth) // Example symbol ID
+                .thenAccept(marketData -> {
+                    // Construct and send a MarketDataSnapshotFullRefresh message
+                    MarketDataSnapshotFullRefresh marketDataSnapshot = new MarketDataSnapshotFullRefresh(new Symbol(symbol));
+                    
+                    // Adding bid prices
+                    for (int i = 0; i < marketData.getBids().size(); i++) {
+                        MarketDataSnapshotFullRefresh.NoMDEntries entry = new MarketDataSnapshotFullRefresh.NoMDEntries();
+                        entry.set(new MDEntryType(MDEntryType.BID));
+                        entry.set(new MDEntryPx(marketData.getBids().get(i).getPrice()));
+                        entry.set(new MDEntrySize(marketData.getBids().get(i).getVolume()));
+                        marketDataSnapshot.addGroup(entry);
+                    }
+                    
+                    // Adding ask prices
+                    for (int i = 0; i < marketData.getAsks().size(); i++) {
+                        MarketDataSnapshotFullRefresh.NoMDEntries entry = new MarketDataSnapshotFullRefresh.NoMDEntries();
+                        entry.set(new MDEntryType(MDEntryType.OFFER));
+                        entry.set(new MDEntryPx(marketData.getAsks().get(i).getPrice()));
+                        entry.set(new MDEntrySize(marketData.getAsks().get(i).getVolume()));
+                        marketDataSnapshot.addGroup(entry);
+                    }
+
+                    // Send the market data snapshot back to the FIX client
+                    try {
+                        Session.sendToTarget(marketDataSnapshot, sessionId);
+                    } catch (SessionNotFound sessionNotFound) {
+                        sessionNotFound.printStackTrace();
+                    }
+                });
     }
 }
-
