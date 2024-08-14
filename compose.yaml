@@ -21,6 +21,10 @@ services:
     command: ["java", "-cp", "app.jar:quickfixj-all-2.3.1.jar", "exchange.core2.core.FixEngine"]
     networks:
       - axum-network
+    deploy:
+      resources:
+        limits:
+          memory: 4G
 
   # Define the shared network
 networks:
