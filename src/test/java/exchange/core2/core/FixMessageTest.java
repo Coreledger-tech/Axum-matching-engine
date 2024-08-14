@@ -50,7 +50,13 @@ public class FixMessageTest {
 
     private void runFixClientTest(FixMessageSender sender) throws Exception {
         // Load FIX session settings
-        SessionSettings settings = new SessionSettings("src/main/resources/quickfix.cfg");
+        InputStream inputStream = FixMessageTest.class.getResourceAsStream("/quickfix.cfg");
+
+        if (inputStream == null) {
+            throw new NullPointerException("FIX configuration file 'quickfix.cfg' not found in the classpath");
+        }
+
+        SessionSettings settings = new SessionSettings(inputStream);
 
         // Create FIX application
         Application application = new ApplicationAdapter();
@@ -70,6 +76,7 @@ public class FixMessageTest {
         // Stop the initiator
         initiator.stop();
     }
+
 
     @FunctionalInterface
     interface FixMessageSender {
