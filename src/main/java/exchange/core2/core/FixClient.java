@@ -11,13 +11,14 @@ public class FixClient {
     public static void main(String[] args) {
         try {
             // Load FIX session settings
-            InputStream inputStream = FixClient.class.getResourceAsStream("/quickfix.cfg");
+            InputStream inputStream = FixClient.class.getResourceAsStream("/fixclient.cfg");
 
+            SessionSettings settings;
             if (inputStream == null) {
-                throw new NullPointerException("FIX configuration file 'quickfix.cfg' not found in the classpath");
+                throw new NullPointerException("FIX configuration file 'quickfixj.cfg' not found in the classpath");
+            } else {
+                settings = new SessionSettings(inputStream);
             }
-
-            SessionSettings settings = new SessionSettings(inputStream);
 
             // Create FIX application
             Application application = new ApplicationAdapter();
@@ -29,26 +30,33 @@ public class FixClient {
 
             // Initialize and start the SocketInitiator
             Initiator initiator = new SocketInitiator(application, storeFactory, settings, logFactory, messageFactory);
+            // Initialize and start the SocketInitiator
             initiator.start();
 
-            // Send a New Order - Buy
-            sendNewOrderBuy(initiator.getSessions().get(0));
+            // Ensure there is at least one session
+            if (!initiator.getSessions().isEmpty()) {
+                // Send a New Order - Buy
+                sendNewOrderBuy(initiator.getSessions().get(0));
 
-            // Send a New Order - Sell
-            sendNewOrderSell(initiator.getSessions().get(0));
+                // Send a New Order - Sell
+                sendNewOrderSell(initiator.getSessions().get(0));
 
-            // Send an Order Cancel Request
-            sendOrderCancelRequest(initiator.getSessions().get(0));
+                // Send an Order Cancel Request
+                sendOrderCancelRequest(initiator.getSessions().get(0));
 
-            // Send a Market Data Request
-            sendMarketDataRequest(initiator.getSessions().get(0));
+                // Send a Market Data Request
+                sendMarketDataRequest(initiator.getSessions().get(0));
 
-            // Send a Request For Quote
-            sendRequestForQuote(initiator.getSessions().get(0));
+                // Send a Request For Quote
+                sendRequestForQuote(initiator.getSessions().get(0));
+            } else {
+                System.err.println("No sessions available. Ensure the connection is established.");
+            }
 
-            // Stop the initiator
+// Stop the initiator
             initiator.stop();
-            
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
