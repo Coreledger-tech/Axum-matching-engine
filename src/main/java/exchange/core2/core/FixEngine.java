@@ -1,9 +1,16 @@
 package exchange.core2.core;
 
+import exchange.core2.core.common.CoreSymbolSpecification;
+import exchange.core2.core.common.SymbolType;
+import exchange.core2.core.common.api.ApiBinaryDataCommand;
+import exchange.core2.core.common.api.binary.BatchAddSymbolsCommand;
+import exchange.core2.core.common.cmd.CommandResultCode;
 import exchange.core2.core.common.config.ExchangeConfiguration;
 import quickfix.*;
 
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.concurrent.ExecutionException;
 
 public class FixEngine {
     public static void main(String[] args) throws Exception {
@@ -70,7 +77,50 @@ public class FixEngine {
                 .exchangeConfiguration(config)
                 .build();
         exchangeCore.startup();
+        ExchangeApi api = exchangeCore.getApi();
+
+        // Define and add bond symbols
+        try {
+            addBondSymbols(api);
+        } catch (ExecutionException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
         return exchangeCore.getApi();
+    }
+
+    // Method to add bond symbols to the exchange
+    private static void addBondSymbols(ExchangeApi api) throws ExecutionException, InterruptedException {
+        CoreSymbolSpecification corporateBond = CoreSymbolSpecification.builder()
+                .symbolId(1002)
+                .type(SymbolType.BOND)
+                .baseCurrency(840) // USD
+                .quoteCurrency(840) // USD as quote
+                .baseScaleK(1000L)
+                .quoteScaleK(100L)
+                .takerFee(0L)
+                .makerFee(0L)
+                .build();
+
+        CoreSymbolSpecification governmentBond = CoreSymbolSpecification.builder()
+                .symbolId(1003)
+                .type(SymbolType.BOND)
+                .baseCurrency(840) // USD
+                .quoteCurrency(840) // USD as quote
+                .baseScaleK(1000L)
+                .quoteScaleK(100L)
+                .takerFee(0L)
+                .makerFee(0L)
+                .build();
+
+        // Wrap the bond symbols in an ApiBinaryDataCommand and submit them
+        api.submitCommandAsync(new ApiBinaryDataCommand(1, new BatchAddSymbolsCommand(Arrays.asList(corporateBond, governmentBond))))
+                .thenAccept(result -> {
+                    if (result == CommandResultCode.SUCCESS) {
+                        System.out.println("Bond symbols added successfully.");
+                    } else {
+                        System.err.println("Failed to add bond symbols.");
+                    }
+                }).get();
     }
 }
