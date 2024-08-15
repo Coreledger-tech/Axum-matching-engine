@@ -8,25 +8,57 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 
+#services:
+#  server:
+#    build:
+#      context: .
+#    image: axum-matching-engine-server
+#    container_name: axum-matching-engine-server-1
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - JAVA_OPTS=-Xms512m -Xmx1024m
+#    command: ["java", "-cp", "app.jar:quickfixj-all-2.3.1.jar", "exchange.core2.core.FixEngine"]
+#    networks:
+#      - axum-network
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 4G
+#
+#  # Define the shared network
+#networks:
+#  axum-network:
+#    driver: bridge
+version: '3.8'
+
 services:
-  server:
+  fixengine:
     build:
       context: .
-    image: axum-matching-engine-server
-    container_name: axum-matching-engine-server-1
+    image: axum-matching-engine-fixengine
+    container_name: axum-matching-engine-fixengine
     ports:
-      - "8080:8080"
+      - "8080:8080" #  Port should match the one used FixEngine
     environment:
       - JAVA_OPTS=-Xms512m -Xmx1024m
     command: ["java", "-cp", "app.jar:quickfixj-all-2.3.1.jar", "exchange.core2.core.FixEngine"]
     networks:
       - axum-network
-    deploy:
-      resources:
-        limits:
-          memory: 4G
 
-  # Define the shared network
+  axumengine:
+    build:
+      context: .
+    image: axum-matching-engine-server
+    container_name: axum-matching-engine-server
+    environment:
+      - JAVA_OPTS=-Xms512m -Xmx1024m
+    ports:
+      - "9090:9090"  # Expose a port for external communication
+    command: ["java", "-jar", "app.jar"]
+    networks:
+      - axum-network
+
 networks:
   axum-network:
     driver: bridge
