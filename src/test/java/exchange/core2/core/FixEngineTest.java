@@ -1,8 +1,8 @@
 package exchange.core2.core;
 
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 import quickfix.*;
-
 import quickfix.MessageFactory;
 import quickfix.field.*;
 import quickfix.fix44.*;
@@ -13,59 +13,75 @@ public class FixEngineTest {
 
     @Test
     public void testNewOrderBuy() throws Exception {
-        runFixClientTest(this::sendNewOrderBuy);
+        runFixClientTest(sessionId -> {
+            NewOrderSingle newOrderSingle = sendNewOrderBuy(sessionId);
+            System.out.println("Sent NewOrderSingle (Buy): " + newOrderSingle);
+        });
     }
 
     @Test
     public void testNewOrderSell() throws Exception {
-        runFixClientTest(this::sendNewOrderSell);
+        runFixClientTest(sessionId -> {
+            NewOrderSingle newOrderSingle = sendNewOrderSell(sessionId);
+            System.out.println("Sent NewOrderSingle (Sell): " + newOrderSingle);
+        });
     }
 
     @Test
     public void testOrderCancelRequest() throws Exception {
-        runFixClientTest(this::sendOrderCancelRequest);
+        runFixClientTest(sessionId -> {
+            OrderCancelRequest cancelRequest = sendOrderCancelRequest(sessionId);
+            System.out.println("Sent OrderCancelRequest: " + cancelRequest);
+        });
     }
 
     @Test
     public void testMarketDataRequest() throws Exception {
-        runFixClientTest(this::sendMarketDataRequest);
+        runFixClientTest(sessionId -> {
+            MarketDataRequest marketDataRequest = sendMarketDataRequest(sessionId);
+            System.out.println("Sent MarketDataRequest: " + marketDataRequest);
+        });
     }
 
     @Test
     public void testRequestForQuote() throws Exception {
-        runFixClientTest(this::sendRequestForQuote);
+        runFixClientTest(sessionId -> {
+            QuoteRequest quoteRequest = sendRequestForQuote(sessionId);
+            System.out.println("Sent RequestForQuote: " + quoteRequest);
+        });
     }
 
     private void runFixClientTest(FixMessageSender sender) throws Exception {
         // Load FIX session settings
-        InputStream inputStream = FixEngineTest.class.getResourceAsStream("/quickfix.cfg");
-    
+        InputStream inputStream = FixEngineTest.class.getResourceAsStream("/fixclient.cfg");
+
+        SessionSettings settings;
         if (inputStream == null) {
-            throw new NullPointerException("FIX configuration file 'quickfix.cfg' not found in the classpath");
+            throw new NullPointerException("FIX configuration file 'quickfixj.cfg' not found in the classpath");
+        } else {
+            settings = new SessionSettings(inputStream);
         }
-    
-        SessionSettings settings = new SessionSettings(inputStream);
-    
+
         // Create FIX application
         Application application = new ApplicationAdapter();
-    
+
         // Set up the message store, log, and message factories
         MessageStoreFactory storeFactory = new FileStoreFactory(settings);
         LogFactory logFactory = new FileLogFactory(settings);
         MessageFactory messageFactory = new DefaultMessageFactory();
-    
+
         // Initialize and start the SocketInitiator
         Initiator initiator = new SocketInitiator(application, storeFactory, settings, logFactory, messageFactory);
         initiator.start();
-    
+
         // Send the FIX message using the provided sender
         sender.send(initiator.getSessions().get(0));
-    
+
         // Stop the initiator
         initiator.stop();
     }
-    
-    private void sendNewOrderBuy(SessionID sessionId) throws SessionNotFound {
+
+    private NewOrderSingle sendNewOrderBuy(SessionID sessionId) throws SessionNotFound {
         NewOrderSingle newOrderSingle = new NewOrderSingle(
                 new ClOrdID("12345"),
                 new Side(Side.BUY),
@@ -76,9 +92,10 @@ public class FixEngineTest {
         newOrderSingle.set(new OrderQty(100));
         newOrderSingle.set(new Price(150.0));
         Session.sendToTarget(newOrderSingle, sessionId);
+        return newOrderSingle;
     }
 
-    private void sendNewOrderSell(SessionID sessionId) throws SessionNotFound {
+    private NewOrderSingle sendNewOrderSell(SessionID sessionId) throws SessionNotFound {
         NewOrderSingle newOrderSingle = new NewOrderSingle(
                 new ClOrdID("12346"),
                 new Side(Side.SELL),
@@ -89,9 +106,10 @@ public class FixEngineTest {
         newOrderSingle.set(new OrderQty(50));
         newOrderSingle.set(new Price(152.0));
         Session.sendToTarget(newOrderSingle, sessionId);
+        return newOrderSingle;
     }
 
-    private void sendOrderCancelRequest(SessionID sessionId) throws SessionNotFound {
+    private OrderCancelRequest sendOrderCancelRequest(SessionID sessionId) throws SessionNotFound {
         OrderCancelRequest cancelRequest = new OrderCancelRequest(
                 new OrigClOrdID("12345"),
                 new ClOrdID("12347"),
@@ -100,9 +118,10 @@ public class FixEngineTest {
         );
         cancelRequest.set(new Symbol("AAPL"));
         Session.sendToTarget(cancelRequest, sessionId);
+        return cancelRequest;
     }
 
-    private void sendMarketDataRequest(SessionID sessionId) throws SessionNotFound {
+    private MarketDataRequest sendMarketDataRequest(SessionID sessionId) throws SessionNotFound {
         MarketDataRequest marketDataRequest = new MarketDataRequest(
                 new MDReqID("12348"),
                 new SubscriptionRequestType(SubscriptionRequestType.SNAPSHOT),
@@ -112,14 +131,16 @@ public class FixEngineTest {
         noRelatedSym.set(new Symbol("AAPL"));
         marketDataRequest.addGroup(noRelatedSym);
         Session.sendToTarget(marketDataRequest, sessionId);
+        return marketDataRequest;
     }
 
-    private void sendRequestForQuote(SessionID sessionId) throws SessionNotFound {
+    private QuoteRequest sendRequestForQuote(SessionID sessionId) throws SessionNotFound {
         QuoteRequest quoteRequest = new QuoteRequest(new QuoteReqID("12349"));
         QuoteRequest.NoRelatedSym group = new QuoteRequest.NoRelatedSym();
         group.set(new Symbol("AAPL"));
         quoteRequest.addGroup(group);
         Session.sendToTarget(quoteRequest, sessionId);
+        return quoteRequest;
     }
 
     @FunctionalInterface
