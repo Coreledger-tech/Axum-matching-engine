@@ -158,7 +158,63 @@ public class FixApp implements Application {
         });
     }
 
-     private void handleOrderStatusRequest(OrderStatusRequest request) throws FieldNotFound {
+    private void handleBatchOrder(Message message, SessionID sessionId) throws FieldNotFound {
+        // Extract the repeating group of orders (NoOrders)
+        int noOrders = message.getInt(NoOrders.FIELD);
+
+        for (int i = 1; i <= noOrders; i++) {
+            Group orderGroup = message.getGroup(i, NoOrders.FIELD);
+
+            // Extract individual order details from the group
+            String clOrdID = orderGroup.getString(ClOrdID.FIELD);
+            String symbol = orderGroup.getString(Symbol.FIELD);
+            char side = orderGroup.getChar(Side.FIELD);
+            double orderQty = orderGroup.getDouble(OrderQty.FIELD);
+            double price = orderGroup.getDouble(Price.FIELD);
+
+            System.out.println("Processing batch order: clOrdID=" + clOrdID + ", symbol=" + symbol + ", side=" + side + ", price=" + price + ", quantity=" + orderQty);
+
+            // Translate FIX message to ExchangeCore order
+            long userId = 301L; // Example user ID, you may want to map this based on session or other data
+            OrderAction orderAction = (side == Side.BUY) ? OrderAction.BID : OrderAction.ASK;
+            OrderType orderType = OrderType.GTC; // Example order type, modify as needed
+
+            // Convert the symbol string to your internal symbol ID (this mapping needs to be done based on your setup)
+            long symbolId = getSymbolIdForBond(symbol); // Example mapping function
+
+            // Place each order using the exchange API
+            exchangeApi.submitCommandAsync(ApiPlaceOrder.builder()
+                    .uid(userId)
+                    .orderId(System.nanoTime()) // Unique order ID for each order
+                    .symbol((int) symbolId)
+                    .price((long) (price * 100)) // Adjust price based on precision
+                    .size((long) orderQty)
+                    .action(orderAction)
+                    .orderType(orderType)
+                    .build()).thenAccept(result -> {
+                if (result != CommandResultCode.SUCCESS) {
+                    System.err.println("Failed to place order: " + result);
+                } else {
+                    System.out.println("Batch order placed successfully: clOrdID=" + clOrdID);
+                }
+            });
+        }
+    }
+
+    private long getSymbolIdForBond(String symbol) {
+        // Example mapping for bond symbols
+        switch (symbol) {
+            case "US9128285M80": // Example ISIN for a US government bond
+                return 1003; // Return corresponding internal symbol ID
+            case "CORP123456789": // Example identifier for a corporate bond
+                return 1002; // Return corresponding internal symbol ID
+            default:
+                throw new IllegalArgumentException("Unknown bond symbol: " + symbol);
+        }
+    }
+
+
+    private void handleOrderStatusRequest(OrderStatusRequest request) throws FieldNotFound {
         String clOrdID = request.getClOrdID().getValue();
         long orderId = Long.parseLong(clOrdID);
 
