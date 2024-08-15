@@ -7,7 +7,7 @@ import exchange.core2.core.common.api.ApiPlaceOrder;
 import exchange.core2.core.common.cmd.CommandResultCode;
 import quickfix.*;
 import quickfix.Message;
-import quickfix.field.Side;
+import quickfix.field.*;
 import quickfix.fix44.*;
 
 
@@ -164,71 +164,72 @@ public class FixApp implements Application {
 
         System.out.println("Processing OrderStatusRequest: clOrdID=" + clOrdID);
 
-        exchangeApi.submitCommandAsyncFullResponse(ApiCancelOrder.builder()
-                .orderId(orderId)
-                .uid(301L) // Example UID
-                .symbol(1001) // Example symbol ID
-                .build()).thenAccept(cmd -> {
-                    // Construct an ExecutionReport based on the command result
-                    ExecutionReport executionReport = new ExecutionReport(
-                            new OrderID(Long.toString(cmd.orderId)),
-                            new ExecID(Long.toString(cmd.orderId)),
-                            new ExecType(ExecType.FILL),
-                            new OrdStatus(OrdStatus.FILLED),
-                            new Symbol("US9128285M80"),
-                            new Side(Side.BUY),
-                            new LeavesQty(cmd.size),
-                            new CumQty(cmd.size),
-                            new AvgPx(cmd.price)
-                    );
-                    executionReport.set(new ClOrdID(clOrdID));
-                    executionReport.set(new LastShares(cmd.size));
-                    executionReport.set(new LastPx(cmd.price));
-
-                    // Send the execution report back to the FIX client
-                    try {
-                        Session.sendToTarget(executionReport, sessionId);
-                    } catch (SessionNotFound sessionNotFound) {
-                        sessionNotFound.printStackTrace();
-                    }
-                });
+//        exchangeApi.submitCommandAsyncFullResponse(ApiCancelOrder.builder()
+//                .orderId(orderId)
+//                .uid(301L) // Example UID
+//                .symbol(1001) // Example symbol ID
+//                        .build());
+//                .build()).thenAccept(cmd -> {
+//                    // Construct an ExecutionReport based on the command result
+//                    ExecutionReport executionReport = new ExecutionReport(
+//                            new OrderID(Long.toString(cmd.orderId)),
+//                            new ExecID(Long.toString(cmd.orderId)),
+//                            new ExecType(ExecType.FILL),
+//                            new OrdStatus(OrdStatus.FILLED),
+//                            new Symbol("US9128285M80"),
+//                            new Side(Side.BUY),
+//                            new LeavesQty(cmd.size),
+//                            new CumQty(cmd.size),
+//                            new AvgPx(cmd.price)
+//                    );
+//                    executionReport.set(new ClOrdID(clOrdID));
+//                    executionReport.set(new LastShares(cmd.size));
+//                    executionReport.set(new LastPx(cmd.price));
+//
+//                    // Send the execution report back to the FIX client
+//                    try {
+//                        Session.sendToTarget(executionReport, sessionId);
+//                    } catch (SessionNotFound sessionNotFound) {
+//                        sessionNotFound.printStackTrace();
+//                    }
+//                });
     }
 
     private void handleMarketDataRequest(MarketDataRequest request) throws FieldNotFound {
-        String symbol = request.getSymbol().getValue();
+        String symbol = request.getScope().getValue();
         int depth = 10; // Example depth, could be adjusted based on the request
 
         System.out.println("Processing MarketDataRequest: " + request.toString());
-
-        exchangeApi.requestOrderBookAsync(1001, depth) // Example symbol ID
-                .thenAccept(marketData -> {
-                    // Construct and send a MarketDataSnapshotFullRefresh message
-                    MarketDataSnapshotFullRefresh marketDataSnapshot = new MarketDataSnapshotFullRefresh(new Symbol(symbol));
+//
+//        exchangeApi.requestOrderBookAsync(1001, depth) // Example symbol ID
+//                .thenAccept(marketData -> {
+//                    // Construct and send a MarketDataSnapshotFullRefresh message
+//                    MarketDataSnapshotFullRefresh marketDataSnapshot = new MarketDataSnapshotFullRefresh();
                     
                     // Adding bid prices
-                    for (int i = 0; i < marketData.getBids().size(); i++) {
-                        MarketDataSnapshotFullRefresh.NoMDEntries entry = new MarketDataSnapshotFullRefresh.NoMDEntries();
-                        entry.set(new MDEntryType(MDEntryType.BID));
-                        entry.set(new MDEntryPx(marketData.getBids().get(i).getPrice()));
-                        entry.set(new MDEntrySize(marketData.getBids().get(i).getVolume()));
-                        marketDataSnapshot.addGroup(entry);
-                    }
-                    
-                    // Adding ask prices
-                    for (int i = 0; i < marketData.getAsks().size(); i++) {
-                        MarketDataSnapshotFullRefresh.NoMDEntries entry = new MarketDataSnapshotFullRefresh.NoMDEntries();
-                        entry.set(new MDEntryType(MDEntryType.OFFER));
-                        entry.set(new MDEntryPx(marketData.getAsks().get(i).getPrice()));
-                        entry.set(new MDEntrySize(marketData.getAsks().get(i).getVolume()));
-                        marketDataSnapshot.addGroup(entry);
-                    }
-
-                    // Send the market data snapshot back to the FIX client
-                    try {
-                        Session.sendToTarget(marketDataSnapshot, sessionId);
-                    } catch (SessionNotFound sessionNotFound) {
-                        sessionNotFound.printStackTrace();
-                    }
-                });
+//                    for (int i = 0; i < marketData.getBids().size(); i++) {
+//                        MarketDataSnapshotFullRefresh.NoMDEntries entry = new MarketDataSnapshotFullRefresh.NoMDEntries();
+//                        entry.set(new MDEntryType(MDEntryType.BID));
+//                        entry.set(new MDEntryPx(marketData.getBids().get(i).getPrice()));
+//                        entry.set(new MDEntrySize(marketData.getBids().get(i).getVolume()));
+//                        marketDataSnapshot.addGroup(entry);
+//                    }
+//
+//                    // Adding ask prices
+//                    for (int i = 0; i < marketData.getAsks().size(); i++) {
+//                        MarketDataSnapshotFullRefresh.NoMDEntries entry = new MarketDataSnapshotFullRefresh.NoMDEntries();
+//                        entry.set(new MDEntryType(MDEntryType.OFFER));
+//                        entry.set(new MDEntryPx(marketData.getAsks().get(i).getPrice()));
+//                        entry.set(new MDEntrySize(marketData.getAsks().get(i).getVolume()));
+//                        marketDataSnapshot.addGroup(entry);
+//                    }
+//
+//                    // Send the market data snapshot back to the FIX client
+//                    try {
+//                        Session.sendToTarget(marketDataSnapshot, sessionId);
+//                    } catch (SessionNotFound sessionNotFound) {
+//                        sessionNotFound.printStackTrace();
+//                    }
+ //               });
     }
 }

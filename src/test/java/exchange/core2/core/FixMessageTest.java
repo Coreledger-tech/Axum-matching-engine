@@ -1,5 +1,9 @@
+package exchange.core2.core;
+
 import org.junit.jupiter.api.Test;
 import quickfix.*;
+
+import java.io.InputStream;
 
 public class FixMessageTest {
 
@@ -80,6 +84,6 @@ public class FixMessageTest {
 
     @FunctionalInterface
     interface FixMessageSender {
-        void send(SessionID sessionId) throws SessionNotFound;
+        void send(SessionID sessionId) throws SessionNotFound, InvalidMessage;
     }
 }

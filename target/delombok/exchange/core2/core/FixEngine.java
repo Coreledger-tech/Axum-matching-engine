@@ -8,22 +8,27 @@ import java.io.InputStream;
 public class FixEngine {
     public static void main(String[] args) throws Exception {
         try {
-        // Load FIX session settings from the configuration file
-        InputStream inputStream = FixEngine.class.getResourceAsStream("/quickfixj.cfg");
-        //assert inputStream != null;
-        SessionSettings settings = new SessionSettings(inputStream);
+            // Load FIX session settings from the configuration file
+            InputStream inputStream = FixEngine.class.getResourceAsStream("/quickfix.cfg");
 
-        // Create the FIX application
-        Application application = new FixApp(getExchangeApi());
+            SessionSettings settings;
+            if (inputStream == null) {
+                throw new NullPointerException("FIX configuration file 'quickfixj.cfg' not found in the classpath");
+            } else {
+                settings = new SessionSettings(inputStream);
+            }
 
-        // Set up the message store, log, and message factories
-        MessageStoreFactory storeFactory = new FileStoreFactory(settings);
-        LogFactory logFactory = new FileLogFactory(settings);
-        MessageFactory messageFactory = new DefaultMessageFactory();
+            // Create the FIX application
+            Application application = new FixApp(getExchangeApi());
 
-        // Initialize and start the SocketAcceptor
-        Acceptor acceptor = new SocketAcceptor(application, storeFactory, settings, logFactory, messageFactory);
-        acceptor.start();
+            // Set up the message store, log, and message factories
+            MessageStoreFactory storeFactory = new FileStoreFactory(settings);
+            LogFactory logFactory = new FileLogFactory(settings);
+            MessageFactory messageFactory = new DefaultMessageFactory();
+
+            // Initialize and start the SocketAcceptor
+            Acceptor acceptor = new SocketAcceptor(application, storeFactory, settings, logFactory, messageFactory);
+            acceptor.start();
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace();

@@ -1,8 +1,13 @@
+package exchange.core2.core;
+
 import org.junit.jupiter.api.Test;
 import quickfix.*;
 
+import quickfix.MessageFactory;
 import quickfix.field.*;
 import quickfix.fix44.*;
+
+import java.io.InputStream;
 
 public class FixEngineTest {
 

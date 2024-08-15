@@ -1,0 +1,29 @@
+-------------------------------------------------------------------------------
+Test set: exchange.core2.core.FixMessageTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 1.066 s <<< FAILURE! - in exchange.core2.core.FixMessageTest
+testMarketDataRequest  Time elapsed: 1.061 s  <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at exchange.core2.core.FixMessageTest.runFixClientTest(FixMessageTest.java:78)
+	at exchange.core2.core.FixMessageTest.testMarketDataRequest(FixMessageTest.java:39)
+
+testOrderCancelRequest  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at exchange.core2.core.FixMessageTest.runFixClientTest(FixMessageTest.java:78)
+	at exchange.core2.core.FixMessageTest.testOrderCancelRequest(FixMessageTest.java:30)
+
+testRequestForQuote  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at exchange.core2.core.FixMessageTest.runFixClientTest(FixMessageTest.java:78)
+	at exchange.core2.core.FixMessageTest.testRequestForQuote(FixMessageTest.java:48)
+
+testNewOrderSell  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at exchange.core2.core.FixMessageTest.runFixClientTest(FixMessageTest.java:78)
+	at exchange.core2.core.FixMessageTest.testNewOrderSell(FixMessageTest.java:21)
+
+testNewOrderBuy  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at exchange.core2.core.FixMessageTest.runFixClientTest(FixMessageTest.java:78)
+	at exchange.core2.core.FixMessageTest.testNewOrderBuy(FixMessageTest.java:12)
+

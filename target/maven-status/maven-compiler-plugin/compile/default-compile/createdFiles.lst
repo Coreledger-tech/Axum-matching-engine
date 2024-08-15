@@ -147,6 +147,7 @@ exchange/core2/core/processors/RiskEngine$State.class
 exchange/core2/core/common/api/ApiNop$ApiNopBuilder.class
 exchange/core2/core/IEventsHandler$OrderBook.class
 exchange/core2/core/common/api/ApiBinaryDataCommand.class
+exchange/core2/core/FixClient.class
 exchange/core2/core/common/api/ApiResumeUser$ApiResumeUserBuilder.class
 exchange/core2/core/processors/TwoStepMasterProcessor.class
 exchange/core2/core/common/config/ExchangeConfiguration$ExchangeConfigurationBuilder.class
