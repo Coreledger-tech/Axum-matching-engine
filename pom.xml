@@ -573,6 +573,7 @@
                                 !-- Include FIX tests -->
                                 <include>**/FixEngineTest.java</include>
                                 <include>**/FixMessageTest.java</include>
+                                <include>**/ExpandedFixMessageTest</include>
                             </includes>
                             <excludes>
                                 <exclude>**/remote/**/*.class</exclude>
