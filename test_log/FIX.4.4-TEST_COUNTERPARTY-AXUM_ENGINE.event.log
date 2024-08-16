@@ -1,0 +1,39 @@
+20240816-08:48:05: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20240816-08:48:05: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20240816-08:48:05: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20240816-08:48:05: java.net.ConnectException during connection to localhost/127.0.0.1:8080: java.net.ConnectException: Connection refused (Next retry in 60000 milliseconds)
+20240816-08:48:05: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20240816-08:48:05: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20240816-08:48:05: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20240816-08:48:05: java.net.ConnectException during connection to localhost/127.0.0.1:8080: java.net.ConnectException: Connection refused (Next retry in 60000 milliseconds)
+20240816-08:48:05: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20240816-08:48:05: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20240816-08:48:05: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20240816-08:48:05: java.net.ConnectException during connection to localhost/127.0.0.1:8080: java.net.ConnectException: Connection refused (Next retry in 60000 milliseconds)
+20240816-08:48:05: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20240816-08:48:05: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20240816-08:48:05: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20240816-08:48:05: java.net.ConnectException during connection to localhost/127.0.0.1:8080: java.net.ConnectException: Connection refused (Next retry in 60000 milliseconds)
+20240816-08:48:05: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20240816-08:48:05: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20240816-08:48:05: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20240816-08:48:05: java.nio.channels.ClosedByInterruptException during connection to localhost/127.0.0.1:8080: java.nio.channels.ClosedByInterruptException (Next retry in 60000 milliseconds)
+20240816-08:48:06: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20240816-08:48:06: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20240816-08:48:06: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20240816-08:48:06: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20240816-08:48:06: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20240816-08:48:06: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20240816-08:48:06: java.nio.channels.ClosedByInterruptException during connection to localhost/127.0.0.1:8080: java.nio.channels.ClosedByInterruptException (Next retry in 60000 milliseconds)
+20240816-08:48:06: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20240816-08:48:06: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20240816-08:48:06: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20240816-08:48:06: java.nio.channels.ClosedByInterruptException during connection to localhost/127.0.0.1:8080: java.nio.channels.ClosedByInterruptException (Next retry in 60000 milliseconds)
+20240816-08:48:06: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20240816-08:48:06: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20240816-08:48:06: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20240816-08:48:06: java.net.ConnectException during connection to localhost/127.0.0.1:8080: java.net.ConnectException: Connection refused (Next retry in 60000 milliseconds)
+20240816-08:48:06: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20240816-08:48:06: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20240816-08:48:06: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20240816-08:48:06: java.net.ConnectException during connection to localhost/127.0.0.1:8080: java.net.ConnectException: Connection refused (Next retry in 60000 milliseconds)

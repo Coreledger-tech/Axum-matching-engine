@@ -70,6 +70,7 @@ exchange/core2/core/common/OrderType.class
 exchange/core2/core/orderbook/OrderBookDirectImpl$Bucket.class
 exchange/core2/core/common/api/ApiReduceOrder$ApiReduceOrderBuilder.class
 exchange/core2/core/common/api/binary/BatchAddAccountsCommand.class
+exchange/core2/core/AxumApi.class
 exchange/core2/core/IEventsHandler$CommandExecutionResult.class
 exchange/core2/core/common/api/ApiCommand.class
 exchange/core2/core/common/api/reports/ReportQuery.class
