@@ -13,6 +13,7 @@ import quickfix.fix44.*;
 
 public class FixApp implements Application {
     private final ExchangeApi exchangeApi;
+    private SessionID currentSessionId;
 
     public FixApp(ExchangeApi exchangeApi) {
         this.exchangeApi = exchangeApi;
@@ -220,72 +221,85 @@ public class FixApp implements Application {
 
         System.out.println("Processing OrderStatusRequest: clOrdID=" + clOrdID);
 
-//        exchangeApi.submitCommandAsyncFullResponse(ApiCancelOrder.builder()
-//                .orderId(orderId)
-//                .uid(301L) // Example UID
-//                .symbol(1001) // Example symbol ID
-//                        .build());
-//                .build()).thenAccept(cmd -> {
-//                    // Construct an ExecutionReport based on the command result
-//                    ExecutionReport executionReport = new ExecutionReport(
-//                            new OrderID(Long.toString(cmd.orderId)),
-//                            new ExecID(Long.toString(cmd.orderId)),
-//                            new ExecType(ExecType.FILL),
-//                            new OrdStatus(OrdStatus.FILLED),
-//                            new Symbol("US9128285M80"),
-//                            new Side(Side.BUY),
-//                            new LeavesQty(cmd.size),
-//                            new CumQty(cmd.size),
-//                            new AvgPx(cmd.price)
-//                    );
-//                    executionReport.set(new ClOrdID(clOrdID));
-//                    executionReport.set(new LastShares(cmd.size));
-//                    executionReport.set(new LastPx(cmd.price));
-//
-//                    // Send the execution report back to the FIX client
-//                    try {
-//                        Session.sendToTarget(executionReport, sessionId);
-//                    } catch (SessionNotFound sessionNotFound) {
-//                        sessionNotFound.printStackTrace();
-//                    }
-//                });
+        exchangeApi.submitCommandAsyncFullResponse(ApiCancelOrder.builder()
+                .orderId(orderId)
+                .uid(301L)  // Example UID
+                .symbol(1001)  // Example symbol ID
+                .build()).thenAccept(orderStatus -> {
+            // Construct an ExecutionReport based on the order status result
+            ExecutionReport executionReport = new ExecutionReport(
+                    new OrderID(Long.toString(orderStatus.orderId)),
+                    new ExecID(Long.toString(orderStatus.orderId)),
+                    new ExecType(orderStatus.size == 0 ? ExecType.FILL : ExecType.PARTIAL_FILL),
+                    new OrdStatus(orderStatus.size == 0 ? OrdStatus.FILLED : OrdStatus.PARTIALLY_FILLED),
+                    new Side(Side.BUY),  // Adjust logic for side
+                    new LeavesQty(orderStatus.size),  // Adjust as per logic
+                    new CumQty(orderStatus.size),  // Adjust as per logic
+                    new AvgPx(orderStatus.price)  // Adjust as per logic
+            );
+            executionReport.set(new ClOrdID(clOrdID));
+            executionReport.set(new LastPx(orderStatus.price));
+
+            // Send the execution report back to the FIX client
+            try {
+                Session.sendToTarget(executionReport, currentSessionId);  // Use the stored sessionId
+            } catch (SessionNotFound sessionNotFound) {
+                sessionNotFound.printStackTrace();
+            }
+        });
     }
+
+
+
 
     private void handleMarketDataRequest(MarketDataRequest request) throws FieldNotFound {
-        String symbol = request.getScope().getValue();
-        int depth = 10; // Example depth, could be adjusted based on the request
+        MarketDepth depthField = request.get(new MarketDepth());  // Retrieve market depth
+        int depth = depthField.getValue();  // Extract depth value
 
-        System.out.println("Processing MarketDataRequest: " + request.toString());
-//
-//        exchangeApi.requestOrderBookAsync(1001, depth) // Example symbol ID
-//                .thenAccept(marketData -> {
-//                    // Construct and send a MarketDataSnapshotFullRefresh message
-//                    MarketDataSnapshotFullRefresh marketDataSnapshot = new MarketDataSnapshotFullRefresh();
-                    
-                    // Adding bid prices
-//                    for (int i = 0; i < marketData.getBids().size(); i++) {
-//                        MarketDataSnapshotFullRefresh.NoMDEntries entry = new MarketDataSnapshotFullRefresh.NoMDEntries();
-//                        entry.set(new MDEntryType(MDEntryType.BID));
-//                        entry.set(new MDEntryPx(marketData.getBids().get(i).getPrice()));
-//                        entry.set(new MDEntrySize(marketData.getBids().get(i).getVolume()));
-//                        marketDataSnapshot.addGroup(entry);
-//                    }
-//
-//                    // Adding ask prices
-//                    for (int i = 0; i < marketData.getAsks().size(); i++) {
-//                        MarketDataSnapshotFullRefresh.NoMDEntries entry = new MarketDataSnapshotFullRefresh.NoMDEntries();
-//                        entry.set(new MDEntryType(MDEntryType.OFFER));
-//                        entry.set(new MDEntryPx(marketData.getAsks().get(i).getPrice()));
-//                        entry.set(new MDEntrySize(marketData.getAsks().get(i).getVolume()));
-//                        marketDataSnapshot.addGroup(entry);
-//                    }
-//
-//                    // Send the market data snapshot back to the FIX client
-//                    try {
-//                        Session.sendToTarget(marketDataSnapshot, sessionId);
-//                    } catch (SessionNotFound sessionNotFound) {
-//                        sessionNotFound.printStackTrace();
-//                    }
- //               });
+        // NoRelatedSym is a repeating group, so we'll iterate over it
+        MarketDataRequest.NoRelatedSym group = new MarketDataRequest.NoRelatedSym();
+
+        for (int i = 1; i <= request.getGroupCount(NoRelatedSym.FIELD); i++) {
+            request.getGroup(i, group);
+            Symbol symbolField = group.getSymbol();  // Retrieve symbol from the group
+            String symbol = symbolField.getValue();  // Extract symbol value
+
+            // Convert the symbol string to your internal symbol ID
+            long symbolId = getSymbolIdForBond(symbol);
+
+            System.out.println("Processing MarketDataRequest for symbol: " + symbol);
+
+            exchangeApi.requestOrderBookAsync((int) symbolId, depth)
+                    .thenAccept(marketData -> {
+                        // Construct and send a MarketDataSnapshotFullRefresh message
+                        MarketDataSnapshotFullRefresh marketDataSnapshot = new MarketDataSnapshotFullRefresh();
+
+                        // Adding bid prices
+                        for (int j = 0; j < marketData.bidSize; j++) {
+                            MarketDataSnapshotFullRefresh.NoMDEntries entry = new MarketDataSnapshotFullRefresh.NoMDEntries();
+                            entry.set(new MDEntryType(MDEntryType.BID));
+                            entry.set(new MDEntryPx(marketData.bidPrices[j]));
+                            entry.set(new MDEntrySize(marketData.bidVolumes[j]));
+                            marketDataSnapshot.addGroup(entry);
+                        }
+
+                        // Adding ask prices
+                        for (int j = 0; j < marketData.askSize; j++) {
+                            MarketDataSnapshotFullRefresh.NoMDEntries entry = new MarketDataSnapshotFullRefresh.NoMDEntries();
+                            entry.set(new MDEntryType(MDEntryType.OFFER));
+                            entry.set(new MDEntryPx(marketData.askPrices[j]));
+                            entry.set(new MDEntrySize(marketData.askVolumes[j]));
+                            marketDataSnapshot.addGroup(entry);
+                        }
+
+                        // Send the market data snapshot back to the FIX client
+                        try {
+                            Session.sendToTarget(marketDataSnapshot, currentSessionId);  // Use the stored sessionId
+                        } catch (SessionNotFound sessionNotFound) {
+                            sessionNotFound.printStackTrace();
+                        }
+                    });
+        }
     }
+
 }

@@ -30,7 +30,6 @@
 #networks:
 #  axum-network:
 #    driver: bridge
-version: '3.8'
 
 services:
   fixengine:
