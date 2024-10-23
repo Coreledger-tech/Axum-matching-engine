@@ -64,6 +64,7 @@ COPY src/main/resources/quickfix.cfg /app/quickfix.cfg
 
 # Expose the FIX port (make sure this port matches your FixEngine config)
 EXPOSE 8080
+EXPOSE 9090
 
 # Entry point for the container
-ENTRYPOINT ["java", "-cp", "app.jar:quickfixj-all-2.3.1.jar", "exchange.core2.core.FixEngine"]
+ENTRYPOINT ["java", "-cp", "app.jar:quickfixj-all-2.3.1.jar", "exchange.core2.core.FixEngine", "exchange.core2.core.AxumApi", "exchange.core2.core.Axum"]
