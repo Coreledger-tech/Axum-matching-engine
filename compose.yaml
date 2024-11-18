@@ -9,8 +9,18 @@ services:
     environment:
       - JAVA_OPTS=-Xms512m -Xmx1024m
     command: ["java", "-cp", "app.jar:quickfixj-all-2.3.1.jar", "exchange.core2.core.FixEngine"]
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+          cpus: "1.0"
     networks:
       - axum-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   axumengine:
     build:
@@ -21,7 +31,7 @@ services:
       - JAVA_OPTS=-Xms512m -Xmx1024m
     ports:
       - "9090:9090"  # Expose a port for external communication
-    command: ["java", "-jar", "app.jar", "exchange.core2.core.AxumApi", ]
+    command: ["java", "-jar", "app.jar", "exchange.core2.core.AxumApi", "exchange.core2.core.Axum"]
     networks:
       - axum-network
 

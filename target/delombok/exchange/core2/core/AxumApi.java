@@ -1,79 +1,78 @@
 package exchange.core2.core;
-import static spark.Spark.*;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
-import exchange.core2.core.ExchangeApi;
 import exchange.core2.core.common.OrderAction;
 import exchange.core2.core.common.OrderType;
-import exchange.core2.core.common.api.ApiCancelOrder;
-import exchange.core2.core.common.api.ApiOrderBookRequest;
 import exchange.core2.core.common.api.ApiPlaceOrder;
 import exchange.core2.core.common.cmd.CommandResultCode;
+import org.java_websocket.server.WebSocketServer;
+import org.java_websocket.WebSocket;
+import org.java_websocket.handshake.ClientHandshake;
 
+import java.net.InetSocketAddress;
 import java.util.concurrent.ExecutionException;
 
 public class AxumApi {
 
+    private static ExchangeApi api;
+
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         // Initialize the Axum matching engine
-        Axum.main(args);  // Start the Axum matching engine
+        Axum.main(args); // Start the Axum matching engine
+        api = Axum.getApi();
 
-        // Get the API instance
-        ExchangeApi api = Axum.getApi();
+        try {
+            // Start WebSocket server
+            WebSocketServer server = new AxumWebSocketServer(new InetSocketAddress(9091), api);
+            server.start();
+            System.out.println("WebSocket server started on port 9091");
+        } catch (Exception e) {
+            System.err.println("Failed to start WebSocket server: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
 
-        // Endpoint for placing orders
-//        post("/api/place-order", (req, res) -> {
-//            try {
-//                String symbol = req.queryParams("symbol");
-//                String orderTypeStr = req.queryParams("orderType");
-//                String actionStr = req.queryParams("action");
-//                long price = Long.parseLong(req.queryParams("price"));
-//                long quantity = Long.parseLong(req.queryParams("quantity"));
-//                long userId = Long.parseLong(req.queryParams("userId"));
-//
-//                OrderType orderType = OrderType.valueOf(orderTypeStr);
-//                OrderAction action = OrderAction.valueOf(actionStr);
-//
-//                api.submitCommandAsync(ApiPlaceOrder.builder()
-//                        .uid(userId)
-//                        .orderId(System.nanoTime())
-//                        .symbol(Integer.parseInt(symbol))
-//                        .price(price)
-//                        .size(quantity)
-//                        .action(action)
-//                        .orderType(orderType)
-//                        .build()).thenAccept(result -> {
-//                    if (result == CommandResultCode.SUCCESS) {
-//                        res.status(200);
-//                        res.body("Trade successfully placed");
-//                    } else {
-//                        res.status(400);
-//                        res.body("Failed to place trade: " + result.name());
-//                    }
-//                });
-//            } catch (Exception e) {
-//                res.status(500);
-//                res.body("Internal Server Error: " + e.getMessage());
-//            }
-//            return res.body();
-//        });
+class AxumWebSocketServer extends WebSocketServer {
 
-        post("/api/place-order", (req, res) -> {
-            try {
-                // Parse JSON body
-                JsonObject jsonBody = JsonParser.parseString(req.body()).getAsJsonObject();
-                String symbol = jsonBody.get("symbol").getAsString();
-                String orderTypeStr = jsonBody.get("orderType").getAsString();
-                String actionStr = jsonBody.get("action").getAsString();
-                long price = jsonBody.get("price").getAsLong();
-                long quantity = jsonBody.get("quantity").getAsLong();
-                long userId = jsonBody.get("userId").getAsLong();
+    private final ExchangeApi api;
+
+    public AxumWebSocketServer(InetSocketAddress address, ExchangeApi api) {
+        super(address);
+        this.api = api;
+    }
+
+    @Override
+    public void onOpen(WebSocket conn, ClientHandshake handshake) {
+        System.out.println("WebSocket connection opened: " + conn.getRemoteSocketAddress());
+    }
+
+    @Override
+    public void onClose(WebSocket conn, int code, String reason, boolean remote) {
+        System.out.println("WebSocket connection closed: " + conn.getRemoteSocketAddress());
+    }
+
+    @Override
+    public void onMessage(WebSocket conn, String message) {
+        System.out.println("Received WebSocket message: " + message);
+
+        try {
+            // Parse JSON message
+            JsonObject json = JsonParser.parseString(message).getAsJsonObject();
+            String type = json.get("type").getAsString();
+
+            if ("place-order".equals(type)) {
+                String symbol = json.get("symbol").getAsString();
+                String orderTypeStr = json.get("orderType").getAsString();
+                String actionStr = json.get("action").getAsString();
+                long price = json.get("price").getAsLong();
+                long quantity = json.get("quantity").getAsLong();
+                long userId = json.get("userId").getAsLong();
 
                 OrderType orderType = OrderType.valueOf(orderTypeStr);
                 OrderAction action = OrderAction.valueOf(actionStr);
 
-                // Call the matching engine's API to submit the order
                 api.submitCommandAsync(ApiPlaceOrder.builder()
                         .uid(userId)
                         .orderId(System.nanoTime())
@@ -83,69 +82,29 @@ public class AxumApi {
                         .action(action)
                         .orderType(orderType)
                         .build()).thenAccept(result -> {
-                    if (result == CommandResultCode.SUCCESS) {
-                        res.status(200);
-                        res.body("Trade successfully placed");
-                    } else {
-                        res.status(400);
-                        res.body("Failed to place trade: " + result.name());
-                    }
+                    JsonObject response = new JsonObject();
+                    response.addProperty("type", "place-order-response");
+                    response.addProperty("status", result == CommandResultCode.SUCCESS ? "success" : "failure");
+                    response.addProperty("message", result.name());
+
+                    conn.send(response.toString());
                 });
-            } catch (Exception e) {
-                res.status(500);
-                res.body("Internal Server Error: " + e.getMessage());
+            } else {
+                conn.send("{\"type\": \"error\", \"message\": \"Unknown message type\"}");
             }
-            return res.body();
-        });
+        } catch (Exception e) {
+            conn.send("{\"type\": \"error\", \"message\": \"" + e.getMessage() + "\"}");
+            System.err.println("Error processing WebSocket message: " + e.getMessage());
+        }
+    }
 
+    @Override
+    public void onError(WebSocket conn, Exception ex) {
+        System.err.println("WebSocket error: " + ex.getMessage());
+    }
 
-        // Endpoint for canceling orders
-        post("/api/cancel-order", (req, res) -> {
-            try {
-                long orderId = Long.parseLong(req.queryParams("orderId"));
-                long symbol = Long.parseLong(req.queryParams("symbol"));
-                long userId = Long.parseLong(req.queryParams("userId"));
-
-                api.submitCommandAsync(ApiCancelOrder.builder()
-                        .orderId(orderId)
-                        .uid(userId)
-                        .symbol((int) symbol)
-                        .build()).thenAccept(result -> {
-                    if (result == CommandResultCode.SUCCESS) {
-                        res.status(200);
-                        res.body("Order successfully canceled");
-                    } else {
-                        res.status(400);
-                        res.body("Failed to cancel order: " + result.name());
-                    }
-                });
-            } catch (Exception e) {
-                res.status(500);
-                res.body("Internal Server Error: " + e.getMessage());
-            }
-            return res.body();
-        });
-
-        // Endpoint for retrieving the order book
-        get("/api/order-book", (req, res) -> {
-            try {
-                int symbol = Integer.parseInt(req.queryParams("symbol"));
-                int depth = Integer.parseInt(req.queryParams("depth"));
-
-                api.requestOrderBookAsync(symbol, depth).thenAccept(orderBook -> {
-                    if (orderBook != null) {
-                        res.status(200);
-                        res.body("Order book data: " + orderBook.toString());
-                    } else {
-                        res.status(400);
-                        res.body("Failed to retrieve order book");
-                    }
-                });
-            } catch (Exception e) {
-                res.status(500);
-                res.body("Internal Server Error: " + e.getMessage());
-            }
-            return res.body();
-        });
+    @Override
+    public void onStart() {
+        System.out.println("WebSocket server started");
     }
 }

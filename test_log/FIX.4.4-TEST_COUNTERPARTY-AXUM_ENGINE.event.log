@@ -158,3 +158,259 @@
 20240822-03:38:59: Configured socket addresses for session: [localhost/127.0.0.1:8080]
 20240822-03:38:59: MINA session created: local=/127.0.0.1:63795, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
 20240822-03:38:59: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:01: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:01: Session state is not current; resetting FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:01: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:01: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:01: MINA session created: local=/127.0.0.1:51388, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:01: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:01: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:01: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:01: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:01: MINA session created: local=/127.0.0.1:51389, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:01: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:01: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:01: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:01: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:01: MINA session created: local=/127.0.0.1:51390, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:01: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:01: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:01: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:01: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:01: MINA session created: local=/127.0.0.1:51391, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:01: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:01: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:01: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:01: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:01: java.nio.channels.ClosedByInterruptException during connection to localhost/127.0.0.1:8080: java.nio.channels.ClosedByInterruptException (Next retry in 60000 milliseconds)
+20241018-04:15:02: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:02: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:02: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:02: MINA session created: local=/127.0.0.1:51393, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:02: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:02: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:02: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:02: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:02: MINA session created: local=/127.0.0.1:51394, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:02: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:02: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:02: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:02: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:02: java.nio.channels.ClosedByInterruptException during connection to localhost/127.0.0.1:8080: java.nio.channels.ClosedByInterruptException (Next retry in 60000 milliseconds)
+20241018-04:15:02: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:02: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:02: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:02: MINA session created: local=/127.0.0.1:51396, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:02: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:02: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:02: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:02: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:02: MINA session created: local=/127.0.0.1:51397, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:02: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:06: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:06: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:06: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:06: MINA session created: local=/127.0.0.1:51401, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:06: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:06: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:06: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:06: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:06: MINA session created: local=/127.0.0.1:51402, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:06: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:06: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:06: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:06: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:06: MINA session created: local=/127.0.0.1:51403, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:06: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:43: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:43: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:43: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:43: MINA session created: local=/127.0.0.1:51428, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:43: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:43: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:43: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:43: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:43: MINA session created: local=/127.0.0.1:51429, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:43: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:43: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:43: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:43: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:43: MINA session created: local=/127.0.0.1:51430, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:43: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:43: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:43: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:43: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:43: MINA session created: local=/127.0.0.1:51431, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:43: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:43: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:43: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:43: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:43: MINA session created: local=/127.0.0.1:51432, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:43: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:44: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:44: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:44: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:44: java.nio.channels.ClosedByInterruptException during connection to localhost/127.0.0.1:8080: java.nio.channels.ClosedByInterruptException (Next retry in 60000 milliseconds)
+20241018-04:15:44: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:44: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:44: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:44: MINA session created: local=/127.0.0.1:51434, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:44: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:44: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:44: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:44: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:44: java.nio.channels.ClosedByInterruptException during connection to localhost/127.0.0.1:8080: java.nio.channels.ClosedByInterruptException (Next retry in 60000 milliseconds)
+20241018-04:15:44: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:44: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:44: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:44: MINA session created: local=/127.0.0.1:51436, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:44: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:44: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:44: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:44: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:44: MINA session created: local=/127.0.0.1:51437, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:44: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:48: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:48: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:48: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:48: MINA session created: local=/127.0.0.1:51443, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:48: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:48: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:48: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:48: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:48: MINA session created: local=/127.0.0.1:51444, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:48: Disconnecting: Encountered END_OF_STREAM
+20241018-04:15:48: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241018-04:15:48: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241018-04:15:48: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241018-04:15:48: MINA session created: local=/127.0.0.1:51445, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241018-04:15:48: Disconnecting: Encountered END_OF_STREAM
+20241023-06:49:53: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241023-06:49:53: Session state is not current; resetting FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:53: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:53: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241023-06:49:53: MINA session created: local=/127.0.0.1:58575, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241023-06:49:53: Disconnecting: Encountered END_OF_STREAM
+20241023-06:49:53: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241023-06:49:53: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:53: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241023-06:49:53: MINA session created: local=/127.0.0.1:58576, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241023-06:49:53: Disconnecting: Encountered END_OF_STREAM
+20241023-06:49:53: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241023-06:49:53: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:53: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241023-06:49:53: MINA session created: local=/127.0.0.1:58577, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241023-06:49:53: Disconnecting: Encountered END_OF_STREAM
+20241023-06:49:53: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241023-06:49:53: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:53: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241023-06:49:53: MINA session created: local=/127.0.0.1:58578, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241023-06:49:53: Disconnecting: Encountered END_OF_STREAM
+20241023-06:49:53: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241023-06:49:53: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:53: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241023-06:49:53: MINA session created: local=/127.0.0.1:58579, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241023-06:49:53: Disconnecting: Encountered END_OF_STREAM
+20241023-06:49:53: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241023-06:49:53: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:53: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241023-06:49:53: MINA session created: local=/127.0.0.1:58580, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241023-06:49:53: Disconnecting: Encountered END_OF_STREAM
+20241023-06:49:53: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241023-06:49:53: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:53: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241023-06:49:53: MINA session created: local=/127.0.0.1:58581, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241023-06:49:53: Disconnecting: Encountered END_OF_STREAM
+20241023-06:49:53: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241023-06:49:53: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:53: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241023-06:49:53: MINA session created: local=/127.0.0.1:58582, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241023-06:49:53: Disconnecting: Encountered END_OF_STREAM
+20241023-06:49:53: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241023-06:49:53: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:53: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241023-06:49:53: MINA session created: local=/127.0.0.1:58583, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241023-06:49:53: Disconnecting: Encountered END_OF_STREAM
+20241023-06:49:53: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241023-06:49:53: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:53: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241023-06:49:53: MINA session created: local=/127.0.0.1:58584, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241023-06:49:53: Disconnecting: Encountered END_OF_STREAM
+20241023-06:49:57: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241023-06:49:57: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:57: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241023-06:49:57: MINA session created: local=/127.0.0.1:58604, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241023-06:49:57: Disconnecting: Encountered END_OF_STREAM
+20241023-06:49:57: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241023-06:49:57: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:57: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241023-06:49:57: MINA session created: local=/127.0.0.1:58605, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241023-06:49:57: Disconnecting: Encountered END_OF_STREAM
+20241023-06:49:57: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241023-06:49:57: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241023-06:49:57: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241023-06:49:57: MINA session created: local=/127.0.0.1:58606, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241023-06:49:57: Disconnecting: Encountered END_OF_STREAM
+20241115-05:27:22: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241115-05:27:22: Session state is not current; resetting FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:22: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:22: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241115-05:27:22: MINA session created: local=/127.0.0.1:57281, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241115-05:27:22: Disconnecting: Encountered END_OF_STREAM
+20241115-05:27:22: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241115-05:27:22: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:22: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241115-05:27:22: MINA session created: local=/127.0.0.1:57282, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241115-05:27:22: Disconnecting: Encountered END_OF_STREAM
+20241115-05:27:22: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241115-05:27:22: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:22: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241115-05:27:22: MINA session created: local=/127.0.0.1:57283, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241115-05:27:22: Disconnecting: Encountered END_OF_STREAM
+20241115-05:27:22: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241115-05:27:22: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:22: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241115-05:27:22: MINA session created: local=/127.0.0.1:57284, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241115-05:27:22: Disconnecting: Encountered END_OF_STREAM
+20241115-05:27:22: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241115-05:27:22: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:22: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241115-05:27:22: java.nio.channels.ClosedByInterruptException during connection to localhost/127.0.0.1:8080: java.nio.channels.ClosedByInterruptException (Next retry in 60000 milliseconds)
+20241115-05:27:23: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241115-05:27:23: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:23: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241115-05:27:23: java.nio.channels.ClosedByInterruptException during connection to localhost/127.0.0.1:8080: java.nio.channels.ClosedByInterruptException (Next retry in 60000 milliseconds)
+20241115-05:27:23: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241115-05:27:23: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:23: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241115-05:27:23: MINA session created: local=/127.0.0.1:57291, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241115-05:27:23: Disconnecting: Encountered END_OF_STREAM
+20241115-05:27:23: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241115-05:27:23: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:23: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241115-05:27:23: java.nio.channels.ClosedByInterruptException during connection to localhost/127.0.0.1:8080: java.nio.channels.ClosedByInterruptException (Next retry in 60000 milliseconds)
+20241115-05:27:23: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241115-05:27:23: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:23: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241115-05:27:23: MINA session created: local=/127.0.0.1:57293, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241115-05:27:23: Disconnecting: Encountered END_OF_STREAM
+20241115-05:27:23: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241115-05:27:23: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:23: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241115-05:27:23: MINA session created: local=/127.0.0.1:57294, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241115-05:27:23: Disconnecting: Encountered END_OF_STREAM
+20241115-05:27:27: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241115-05:27:27: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:27: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241115-05:27:27: MINA session created: local=/127.0.0.1:57314, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241115-05:27:27: Disconnecting: Encountered END_OF_STREAM
+20241115-05:27:27: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241115-05:27:27: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:27: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241115-05:27:27: MINA session created: local=/127.0.0.1:57315, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241115-05:27:27: Disconnecting: Encountered END_OF_STREAM
+20241115-05:27:27: Session FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE schedule is daily, 00:00:00-UTC - 23:59:59-UTC
+20241115-05:27:27: Created session: FIX.4.4:TEST_COUNTERPARTY->AXUM_ENGINE
+20241115-05:27:27: Configured socket addresses for session: [localhost/127.0.0.1:8080]
+20241115-05:27:27: MINA session created: local=/127.0.0.1:57316, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=localhost/127.0.0.1:8080
+20241115-05:27:27: Disconnecting: Encountered END_OF_STREAM

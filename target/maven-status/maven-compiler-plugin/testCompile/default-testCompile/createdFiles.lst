@@ -30,10 +30,12 @@ exchange/core2/tests/integration/ITExchangeCoreIntegration.class
 exchange/core2/tests/integration/ITExchangeCoreIntegrationRejectionLatency.class
 exchange/core2/tests/util/TestOrdersGeneratorConfig$TestOrdersGeneratorConfigBuilder.class
 exchange/core2/tests/integration/ITExchangeCoreIntegrationRejection.class
+exchange/core2/core/ExpandedFixMessageTest.class
 exchange/core2/tests/util/TestOrdersGenerator$GenResult.class
 exchange/core2/tests/util/TestOrdersGenerator$MultiSymbolGenResult.class
 exchange/core2/core/orderbook/OrderBookNaiveImplExchangeTest.class
 exchange/core2/tests/util/TestOrdersGenerator.class
+exchange/core2/core/ExpandedFixMessageTest$FixMessageSender.class
 exchange/core2/tests/util/LatencyTestsModule.class
 exchange/core2/tests/RunCukesDirectThroughputTests$CukeNaiveLifeCycleHandler.class
 exchange/core2/tests/perf/PerfLatencyCommands.class
@@ -41,6 +43,7 @@ exchange/core2/tests/integration/ITMultiOperation.class
 exchange/core2/tests/perf/modules/ITOrderBookBase.class
 exchange/core2/tests/util/TestConstants.class
 exchange/core2/tests/integration/ITExchangeCoreIntegrationLatency.class
+exchange/core2/core/ExpandedFixMessageTest$2.class
 exchange/core2/tests/util/PersistenceTestsModule.class
 exchange/core2/tests/util/UserCurrencyAccountsGenerator.class
 exchange/core2/tests/integration/ITExchangeCoreIntegrationBasic.class
@@ -66,6 +69,7 @@ exchange/core2/tests/nasdaq/ITCH50StatListener.class
 exchange/core2/tests/util/ExchangeTestContainer$TestDataFutures$TestDataFuturesBuilder.class
 exchange/core2/tests/integration/ITExchangeCoreIntegrationStressLatency.class
 exchange/core2/core/SimpleEventsProcessorTest.class
+exchange/core2/core/ExpandedFixMessageTest$1.class
 exchange/core2/core/FixMessageTest.class
 exchange/core2/tests/util/TestOrdersGeneratorSession.class
 exchange/core2/tests/util/ExchangeTestContainer$AllowedSymbolTypes.class
