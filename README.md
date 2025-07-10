@@ -195,7 +195,5 @@ api.submitCommandAsync(ApiPlaceOrder.builder()
 
 ---
 
-## 🤝 Contributing
 
-Contributions welcome! See \[CONTRIBUTING.md].
 
