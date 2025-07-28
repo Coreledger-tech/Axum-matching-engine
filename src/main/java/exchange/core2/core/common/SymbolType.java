@@ -22,7 +22,7 @@ import java.util.Arrays;
 @Getter
 public enum SymbolType {
     CURRENCY_EXCHANGE_PAIR(0),
-    BOND(1),  // Add this new type for bonds
+    BOND(1),  // new type for bonds
     FUTURES_CONTRACT(2),
     OPTION(3);
 
