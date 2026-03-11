@@ -446,7 +446,10 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.2.5</version>
-                    </plugin>
+                      <configuration>
+    <argLine>--add-opens=java.base/sun.nio.ch=ALL-UNNAMED</argLine>
+  </configuration>
+</plugin>
 
                     <plugin>
                         <groupId>org.projectlombok</groupId>
@@ -602,7 +605,10 @@
                                 <exclude>**/*Stress*Test.java</exclude>
                             </excludes>
                         </configuration>
-                    </plugin>
+                      <configuration>
+    <argLine>--add-opens=java.base/sun.nio.ch=ALL-UNNAMED</argLine>
+  </configuration>
+</plugin>
                 </plugins>
             </build>
         </profile>
